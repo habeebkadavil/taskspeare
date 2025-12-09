@@ -1,0 +1,105 @@
+/* Set the theme colors for the calendar */
+:root {
+  --fc-border-color: hsl(var(--border));
+  --fc-daygrid-event-dot-width: 8px;
+  --fc-list-event-dot-width: 10px;
+  --fc-event-text-color: hsl(var(--primary-foreground));
+  --fc-event-border-color: hsl(var(--primary));
+  --fc-event-bg-color: hsl(var(--primary));
+  --fc-today-bg-color: hsl(var(--secondary));
+}
+
+/* Dark mode overrides */
+.dark {
+    --fc-event-text-color: hsl(var(--primary-foreground));
+    --fc-event-border-color: hsl(var(--primary));
+    --fc-event-bg-color: hsl(var(--primary));
+    --fc-today-bg-color: hsl(var(--secondary));
+}
+
+
+/* General button styling */
+.fc .fc-button {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  transition: background-color 0.2s;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.fc .fc-button:hover {
+  background-color: hsl(var(--muted));
+}
+
+.fc .fc-button-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
+}
+
+.fc .fc-button-primary:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+.fc .fc-button-primary:disabled {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--muted-foreground));
+  border-color: hsl(var(--border));
+}
+
+/* Today button active state */
+.fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+    background-color: hsl(var(--accent));
+    border-color: hsl(var(--accent));
+}
+
+/* Toolbar styling */
+.fc .fc-toolbar.fc-header-toolbar {
+  margin-bottom: 1.5em;
+  padding: 0 0.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+
+/* Day header styling */
+.fc .fc-col-header-cell-cushion {
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+}
+
+.fc-theme-standard .fc-list-day-cushion {
+    background-color: hsl(var(--card));
+}
+
+/* Event styling */
+.fc-event {
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.fc-daygrid-event {
+    white-space: normal;
+}
+
+/* Aspect ratio for wider columns */
+.fc-daygrid-day-frame {
+    aspect-ratio: 2 / 1;
+}
+
+@media (min-width: 1024px) {
+  .fc .fc-col-header-cell {
+    min-width: 120px; /* Adjust this value as needed */
+  }
+}
