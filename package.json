@@ -1,6 +1,8 @@
 {
-  "name": "nextn",
-  "version": "0.1.0",
+  "name": "taskspeare",
+  "version": "1.0.0",
+  "description": "An AI-powered task management application.",
+  "main": "src/index.tsx",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -p 9002",
