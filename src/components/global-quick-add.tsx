@@ -17,6 +17,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '.
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { useToast } from '@/hooks/use-toast';
+import { AddAppointmentForm } from '@/components/add-appointment-form';
 
 import { customers, technicians, items, ledgerAccounts, taxes, itemTypes } from '@/lib/data';
 import { companyDetails } from '@/lib/company';
@@ -45,6 +46,8 @@ export function GlobalQuickAdd() {
         return <AddSaleForm onSave={() => handleSave('Sale')} />;
       case 'add-expense':
         return <AddExpenseForm onSave={() => handleSave('Expense')} />;
+      case 'add-appointment':
+        return <AddAppointmentForm onSave={() => handleSave('Appointment')} />;
       default:
         return null;
     }
@@ -56,6 +59,7 @@ export function GlobalQuickAdd() {
         case 'add-job': return 'Add New Job Order';
         case 'add-sale': return 'Create New Invoice';
         case 'add-expense': return 'Log New Expense';
+        case 'add-appointment': return 'Create New Appointment';
         default: return '';
     }
   }
@@ -66,6 +70,7 @@ export function GlobalQuickAdd() {
         case 'add-job': return 'Enter details for the new job order.';
         case 'add-sale': return 'Create a new sales invoice for a customer.';
         case 'add-expense': return 'Create a new expense voucher.';
+        case 'add-appointment': return 'Schedule a new appointment.';
         default: return '';
     }
   }
