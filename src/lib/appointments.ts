@@ -14,9 +14,28 @@ export type AppointmentRow = {
   created_date?: string | null;
 };
 
-export async function getAppointments(): Promise<AppointmentRow[]> {
-  const res = await query<AppointmentRow>('SELECT * FROM appointments ORDER BY preferred_date DESC NULLS LAST');
-  return res.rows;
+export type GetAppointmentsResult = {
+  rows: AppointmentRow[];
+  total: number;
+  page: number;
+  pageSize: number;
+};
+
+export async function getAppointments(opts?: { page?: number; pageSize?: number; }): Promise<GetAppointmentsResult> {
+  const page = Math.max(1, opts?.page ?? 1);
+  const pageSize = Math.max(1, Math.min(100, opts?.pageSize ?? 20));
+  const offset = (page - 1) * pageSize;
+
+  // total count
+  const totalRes = await query<{ count: string }>('SELECT COUNT(*)::text as count FROM appointments');
+  const total = parseInt(totalRes.rows[0]?.count ?? '0', 10);
+
+  const res = await query<AppointmentRow>(
+    'SELECT * FROM appointments ORDER BY preferred_date DESC NULLS LAST LIMIT $1 OFFSET $2',
+    [pageSize, offset]
+  );
+
+  return { rows: res.rows, total, page, pageSize };
 }
 
 export async function getAppointmentById(id: string): Promise<AppointmentRow | null> {
