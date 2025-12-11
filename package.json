@@ -11,7 +11,8 @@
     "build": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "migrate": "psql \"$DATABASE_URL\" -f db/migrations/001_create_appointments.sql"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",
@@ -62,7 +63,8 @@
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.2",
-    "zustand": "^4.5.4"
+    "zustand": "^4.5.4",
+    "pg": "^8.11.0"
   },
   "devDependencies": {
     "@types/node": "^20",
